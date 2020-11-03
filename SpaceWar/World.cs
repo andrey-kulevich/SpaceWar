@@ -12,20 +12,12 @@ namespace SpaceWar
         public static readonly uint WIDTH = 31;
         public static readonly uint HEIGHT = 50;
         public static readonly uint MAP_LEN = 160;
-        public static readonly uint SCALE = 4;
 
-        private Image tileSet;
-        private Texture texture;
         private Sprite sprite;
 
-        //private uint[,] tileMap = new uint[WIDTH, MAP_LEN];
-
-        public World(String filename)
+        public World(Sprite sprite)
         {
-            tileSet = new Image(filename);
-            texture = new Texture(tileSet);
-            sprite = new Sprite(texture);
-            sprite.Scale = new Vector2f(sprite.Scale.X * SCALE, sprite.Scale.Y * SCALE);
+            this.sprite = sprite;
         }
 
         public Sprite Draw()
@@ -40,7 +32,7 @@ namespace SpaceWar
                     if (GetRandomBool(random)) sprite.TextureRect = new IntRect(0, 0, 16, 16);
                     else sprite.TextureRect = new IntRect(16, 0, 16, 16);
 
-                    sprite.Position = new Vector2f(i * SCALE*16, k * SCALE*16);
+                    sprite.Position = new Vector2f(i * Program.SCALE*16, k * Program.SCALE *16);
                     k++;
                     renderTexture.Draw(sprite);
                 }
