@@ -25,6 +25,7 @@ namespace SpaceWar
             View mapView = window.DefaultView;
             mapView.Rotate(180);
             Vector2f mapOffset = new Vector2f(0, 0.6f);
+            float off = 0;
 
             Player player = new Player("../../../tiles/tileset.png");
 
@@ -39,13 +40,17 @@ namespace SpaceWar
                 clock.Restart(); //перезагружает время
                 time /= 1500; //скорость игры
 
-
-                
-
                 mapView.Move(mapOffset);
                 window.SetView(mapView);
                 window.Draw(map);
                 window.SetView(window.DefaultView);
+
+                off += mapOffset.Y;
+                if (off > 2000)
+                {
+                    mapView.Move(new Vector2f(0, -1800));
+                    off = 0;
+                }
 
                 player.direction = 0;
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Left)) player.direction = 1;

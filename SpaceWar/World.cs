@@ -20,8 +20,6 @@ namespace SpaceWar
 
         //private uint[,] tileMap = new uint[WIDTH, MAP_LEN];
 
-        //public float drawPosition = 0; 
-
         public World(String filename)
         {
             tileSet = new Image(filename);
@@ -50,19 +48,6 @@ namespace SpaceWar
             }
             return new Sprite(renderTexture.Texture);
         }
-
-        //public void GenerateMap()
-        //{
-        //    Random random = new Random();
-        //    for (uint i = 0; i < WIDTH; i++)
-        //    {
-        //        for (uint j = 0; j < MAP_LEN; j++)
-        //        {
-        //            if (GetRandomBool(random)) tileMap[i,j] = 1;
-        //            else tileMap[i, j] = 0;
-        //        }
-        //    }
-        //}
 
         private static bool GetRandomBool(Random r, int truePercentage = 50)
         {
