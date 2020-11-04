@@ -14,7 +14,6 @@ namespace SpaceWar
         public uint direction, health;
         private float x, y, dx, dy, speed;
         
-
         public Player(Sprite sprite)
         {
             this.sprite = sprite;
@@ -63,7 +62,7 @@ namespace SpaceWar
 
         public Bullet Fire(Sprite bulletSprite)
         {
-            return new Bullet(bulletSprite, x, y, true);
+            return new Bullet(bulletSprite, x, y, 1, true);
         }
     }
 }

@@ -45,6 +45,7 @@ namespace SpaceWar
 
             //player
             Player player = new Player(new Sprite(sprite));
+            world.SetPlayer(player);
 
             //bullets
             List<Bullet> bullets = new List<Bullet>();
@@ -101,6 +102,7 @@ namespace SpaceWar
 
                 window.Draw(player.Update(time)); //move the player
                 window.Draw(world.UpdateText()); //update distance traveled
+                world.UpdateHealth(window);
 
                 window.Display();
             }

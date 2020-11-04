@@ -13,19 +13,28 @@ namespace SpaceWar
         public static readonly uint HEIGHT = 50;
         public static readonly uint MAP_LEN = 160;
 
-        private Sprite sprite;
+        private Sprite backSprite;
+        private Sprite healthSprite;
         private Text distanceText;
         private float distance;
-        //private Text playerHealth;
+        private Player player;
 
         public World(Sprite sprite, Font font)
         {
-            this.sprite = sprite;
+            this.backSprite = sprite;
+            this.healthSprite = new Sprite(sprite);
+            healthSprite.TextureRect = new IntRect(64, 16, 16, 16);
+            healthSprite.Scale = new Vector2f(healthSprite.Scale.X * 0.7f, healthSprite.Scale.Y * 0.7f);
             distance = 0;
             distanceText = new Text("0", font, 30);
             distanceText.FillColor = Color.White;
             distanceText.Position = new Vector2f(10, 0);
             
+        }
+
+        public void SetPlayer(Player player)
+        {
+            this.player = player;
         }
 
         public Sprite Draw()
@@ -37,12 +46,12 @@ namespace SpaceWar
             {
                 for (uint j = 0; j < MAP_LEN; j++)
                 {
-                    if (GetRandomBool(random)) sprite.TextureRect = new IntRect(0, 0, 16, 16);
-                    else sprite.TextureRect = new IntRect(16, 0, 16, 16);
+                    if (GetRandomBool(random)) backSprite.TextureRect = new IntRect(0, 0, 16, 16);
+                    else backSprite.TextureRect = new IntRect(16, 0, 16, 16);
 
-                    sprite.Position = new Vector2f(i * Program.SCALE*16, k * Program.SCALE *16);
+                    backSprite.Position = new Vector2f(i * Program.SCALE*16, k * Program.SCALE *16);
                     k++;
-                    renderTexture.Draw(sprite);
+                    renderTexture.Draw(backSprite);
                 }
                 k = 0;
             }
@@ -55,6 +64,15 @@ namespace SpaceWar
             distanceText.DisplayedString = dis.ToString();
             distance += 0.4f;
             return distanceText;
+        }
+
+        public void UpdateHealth(RenderWindow window)
+        {
+            for (uint i = player.health; i >= 1; i--)
+            {
+                healthSprite.Position = new Vector2f(i*16 + WIDTH * 12, 0);
+                window.Draw(healthSprite);
+            }
         }
 
         private static bool GetRandomBool(Random r, int truePercentage = 50)

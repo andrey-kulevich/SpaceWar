@@ -10,15 +10,17 @@ namespace SpaceWar
     {
         private readonly Sprite sprite;
         private float x, y, speed;
+        private uint power;
         private bool isFromPlayer;
 
-        public Bullet(Sprite sprite, float x, float y, bool isFromPlayer)
+        public Bullet(Sprite sprite, float x, float y, uint power, bool isFromPlayer)
         {
             this.sprite = sprite;
             sprite.TextureRect = new IntRect(96, 16, 16, 32);
             speed = 0.6f;
             this.x = x;
             this.y = y;
+            this.power = power;
             this.isFromPlayer = isFromPlayer;
         }
 
