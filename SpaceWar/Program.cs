@@ -32,8 +32,11 @@ namespace SpaceWar
             sprite = new Sprite(texture);
             sprite.Scale = new Vector2f(sprite.Scale.X * SCALE, sprite.Scale.Y * SCALE);
 
+            //load font
+            Font font = new Font("../../../tiles/font.ttf");
+
             //background
-            World world = new World(new Sprite(sprite));
+            World world = new World(new Sprite(sprite), font);
             Sprite map = world.Draw();
             View mapView = window.DefaultView;
             mapView.Rotate(180);
@@ -70,9 +73,9 @@ namespace SpaceWar
 
                 //move view of space to start position if it ends
                 off += mapOffset.Y;
-                if (off > 2000)
+                if (off > 1750)
                 {
-                    mapView.Move(new Vector2f(0, -1800));
+                    mapView.Move(new Vector2f(0, -1750));
                     off = 0;
                 }
 
@@ -86,16 +89,18 @@ namespace SpaceWar
                 if (fireFrequency > 0) fireFrequency--;
                 if (Keyboard.IsKeyPressed(Keyboard.Key.Space) && fireFrequency == 0) 
                 {
-                    fireFrequency = 10;
+                    fireFrequency = 20;
                     bullets.Add(player.Fire(new Sprite(sprite))); 
                 }
 
+                //move the bullets
                 foreach (Bullet bullet in bullets) 
                 {
                     window.Draw(bullet.Update(time));
                 }
 
-                window.Draw(player.Update(time));
+                window.Draw(player.Update(time)); //move the player
+                window.Draw(world.UpdateText()); //update distance traveled
 
                 window.Display();
             }

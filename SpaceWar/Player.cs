@@ -49,9 +49,9 @@ namespace SpaceWar
                     dy = speed;
                     break;
             }
-            if (x + dx * time < World.WIDTH * 16)
+            if (x + dx * time > 0 && x + dx * time < World.WIDTH * 16 - 64) 
                 x += dx * time;
-            if (y + dy * time < World.HEIGHT * 16)
+            if (y + dy * time > 0 && y + dy * time < World.HEIGHT * 16 - 96) 
                 y += dy * time;
 
             dx = 0;

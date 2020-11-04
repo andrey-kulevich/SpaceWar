@@ -14,10 +14,18 @@ namespace SpaceWar
         public static readonly uint MAP_LEN = 160;
 
         private Sprite sprite;
+        private Text distanceText;
+        private float distance;
+        //private Text playerHealth;
 
-        public World(Sprite sprite)
+        public World(Sprite sprite, Font font)
         {
             this.sprite = sprite;
+            distance = 0;
+            distanceText = new Text("0", font, 30);
+            distanceText.FillColor = Color.White;
+            distanceText.Position = new Vector2f(10, 0);
+            
         }
 
         public Sprite Draw()
@@ -39,6 +47,14 @@ namespace SpaceWar
                 k = 0;
             }
             return new Sprite(renderTexture.Texture);
+        }
+
+        public Text UpdateText()
+        {
+            uint dis = (uint)distance;
+            distanceText.DisplayedString = dis.ToString();
+            distance += 0.4f;
+            return distanceText;
         }
 
         private static bool GetRandomBool(Random r, int truePercentage = 50)
