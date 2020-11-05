@@ -97,16 +97,19 @@ namespace SpaceWar
                     bullets.Add(player.Fire(new Sprite(sprite))); 
                 }
 
-                //move the bullets
-                foreach (Bullet bullet in bullets) 
+                //move enemies and bullets and check if hitting
+                for (int i = 0; i < enemies.Count; i++)
                 {
-                    window.Draw(bullet.Update(time));
-                }
-
-                //move the enemies
-                foreach (Enemy enemy in enemies)
-                {
-                    window.Draw(enemy.Update(time));
+                    window.Draw(enemies[i].Update(time));
+                    for (int j = 0; j < bullets.Count; j++)
+                    {
+                        if (enemies[i].isHitting(bullets[j])) 
+                        {
+                            bullets.RemoveAt(j);
+                            if (enemies[i].GetHealth() <= 0) enemies.RemoveAt(i);
+                            break;
+                        } else window.Draw(bullets[j].Update(time));
+                    }                   
                 }
 
                 //spawn new enemies

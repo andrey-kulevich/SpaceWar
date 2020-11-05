@@ -10,8 +10,8 @@ namespace SpaceWar
     {
         private readonly Sprite sprite;
         private float x, y, speed;
-        private uint power;
-        private bool isFromPlayer;
+        public readonly uint power;
+        public readonly bool isFromPlayer;
 
         public Bullet(Sprite sprite, float x, float y, uint power, bool isFromPlayer)
         {
@@ -31,5 +31,7 @@ namespace SpaceWar
             sprite.Position = new Vector2f(x, y);
             return sprite;
         }
+
+        public Vector2f GetPosition() { return new Vector2f(x, y); }
     }
 }

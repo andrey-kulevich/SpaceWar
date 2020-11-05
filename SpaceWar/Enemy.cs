@@ -41,5 +41,19 @@ namespace SpaceWar
         {
             return new Bullet(bulletSprite, x, y, 1, false);
         }
+
+        public bool isHitting(Bullet bullet)
+        {
+            Vector2f pos = bullet.GetPosition();
+            if (pos.X >= x && pos.X <= x + 16 * Program.SCALE &&
+                pos.Y >= y && pos.Y <= y + 16 * Program.SCALE)
+            {
+                health -= bullet.power;
+                return true;
+            }
+            return false;
+        }
+
+        public uint GetHealth() { return health; }
     }
 }
