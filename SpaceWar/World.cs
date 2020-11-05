@@ -26,10 +26,11 @@ namespace SpaceWar
             healthSprite.TextureRect = new IntRect(64, 16, 16, 16);
             healthSprite.Scale = new Vector2f(healthSprite.Scale.X * 0.7f, healthSprite.Scale.Y * 0.7f);
             distance = 0;
-            distanceText = new Text("0", font, 30);
-            distanceText.FillColor = Color.White;
-            distanceText.Position = new Vector2f(10, 0);
-            
+            distanceText = new Text("0", font, 30)
+            {
+                FillColor = Color.White,
+                Position = new Vector2f(10, 0)
+            };
         }
 
         public void SetPlayer(Player player)

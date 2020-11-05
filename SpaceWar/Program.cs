@@ -49,10 +49,13 @@ namespace SpaceWar
 
             //bullets
             List<Bullet> bullets = new List<Bullet>();
-            uint fireFrequency = 0; 
+            uint fireFrequency = 0;
 
             //enemies
-            //...
+            List<Enemy> enemies = new List<Enemy>();
+            int enemySpawnFrequency = 0;
+
+            Random random = new Random();
 
             Clock clock = new Clock();
             
@@ -98,6 +101,20 @@ namespace SpaceWar
                 foreach (Bullet bullet in bullets) 
                 {
                     window.Draw(bullet.Update(time));
+                }
+
+                //move the enemies
+                foreach (Enemy enemy in enemies)
+                {
+                    window.Draw(enemy.Update(time));
+                }
+
+                //spawn new enemies
+                if (enemySpawnFrequency > 0) enemySpawnFrequency--;
+                if (enemySpawnFrequency == 0)
+                {
+                    enemySpawnFrequency = random.Next(50, 500);
+                    enemies.Add(new Enemy(new Sprite(sprite), player));
                 }
 
                 window.Draw(player.Update(time)); //move the player

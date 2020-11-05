@@ -25,6 +25,8 @@ namespace SpaceWar
             speed = 0.4f;
         }
 
+        public float GetX() { return x; }
+
         public Sprite Update(float time)
         {
             switch (direction)
