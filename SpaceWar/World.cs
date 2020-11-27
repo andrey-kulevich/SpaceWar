@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using SFML;
 using SFML.Graphics;
 using SFML.System;
 
@@ -33,24 +30,24 @@ namespace SpaceWar
             };
         }
 
-        public void SetPlayer(Player player)
-        {
-            this.player = player;
-        }
+        public float GetDistance() { return distance; }
+
+        public void SetPlayer(Player player) { this.player = player; }
+        public void SetDistance(float distance) { this.distance = distance; }
 
         public Sprite Draw()
         {
-            RenderTexture renderTexture = new RenderTexture(WIDTH*16, MAP_LEN*16);
+            RenderTexture renderTexture = new RenderTexture(WIDTH*16, HEIGHT * 16);
             Random random = new Random();
             uint k = 0;
             for (uint i = 0; i < WIDTH; i++)
             {
-                for (uint j = 0; j < MAP_LEN; j++)
+                for (uint j = 0; j < HEIGHT; j++)
                 {
                     if (GetRandomBool(random)) backSprite.TextureRect = new IntRect(0, 0, 16, 16);
                     else backSprite.TextureRect = new IntRect(16, 0, 16, 16);
 
-                    backSprite.Position = new Vector2f(i * Program.SCALE*16, k * Program.SCALE *16);
+                    backSprite.Position = new Vector2f(i * GameModel.SCALE*16, k * GameModel.SCALE *16);
                     k++;
                     renderTexture.Draw(backSprite);
                 }

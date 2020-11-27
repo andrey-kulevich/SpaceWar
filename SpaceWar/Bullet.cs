@@ -1,8 +1,5 @@
 ﻿using SFML.Graphics;
 using SFML.System;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SpaceWar
 {
@@ -16,7 +13,7 @@ namespace SpaceWar
         public Bullet(Sprite sprite, float x, float y, uint power, bool isFromPlayer)
         {
             this.sprite = sprite;
-            sprite.TextureRect = new IntRect(96, 16, 16, 32);
+            //sprite.TextureRect = new IntRect(96, 16, 16, 16);
             speed = 0.6f;
             this.x = x;
             this.y = y;
