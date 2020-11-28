@@ -68,13 +68,13 @@ namespace SpaceWar
             //load tileset
             Image tileSet;
             Texture texture;
-            tileSet = new Image("../../../tiles/tileset.png");
+            tileSet = new Image("tiles/tileset.png");
             texture = new Texture(tileSet);
             sprite = new Sprite(texture);
             sprite.Scale = new Vector2f(sprite.Scale.X * SCALE, sprite.Scale.Y * SCALE);
 
             //load font
-            font = new Font("../../../tiles/font.ttf");
+            font = new Font("tiles/font.ttf");
         }
 
         public void KeyboardControl(Player player, List<Bullet> bullets)
